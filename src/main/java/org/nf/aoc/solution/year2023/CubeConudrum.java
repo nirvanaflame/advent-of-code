@@ -1,22 +1,20 @@
-package org.example;
+package org.nf.aoc.solution.year2023;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.stream.Stream;
 
-public class CubeConudrum {
+import org.nf.aoc.solution.Solution;
 
-    public static void main(String[] args) {
+public class CubeConudrum extends Solution<Integer> {
 
-        final Stream<String> lines = FileUtils.streamFile("/day2.txt");
-
-        int result = lines.filter(CubeConudrum::isPossible)
+    @Override
+    public Integer solve(final Stream<String> input) {
+        return input.filter(CubeConudrum::isPossible)
             .map(row -> row.split(":")[0])
             .map(row -> row.split(" ")[1])
             .map(Integer::parseInt)
             .reduce(0, Integer::sum);
-
-        System.out.println(result);
     }
 
     private static boolean isPossible(final String line) {
@@ -46,5 +44,4 @@ public class CubeConudrum {
 
         return true;
     }
-
 }
