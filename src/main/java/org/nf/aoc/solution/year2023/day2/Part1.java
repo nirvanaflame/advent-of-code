@@ -1,16 +1,22 @@
-package org.nf.aoc.solution.year2023;
+package org.nf.aoc.solution.year2023.day2;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.stream.Stream;
 
+import org.nf.aoc.meta.SolutionDescription;
 import org.nf.aoc.solution.Solution;
 
-public class CubeConudrum extends Solution<Integer> {
+@SolutionDescription(year = 2023, day = 2, part = 1,
+    description = "--- Day 2: Cube Conundrum ---",
+    link = "https://adventofcode.com/2023/day/2",
+    tags = { "#string_manipulation", "#memoization" }
+)
+public class Part1 implements Solution<Integer> {
 
     @Override
     public Integer solve(final Stream<String> input) {
-        return input.filter(CubeConudrum::isPossible)
+        return input.filter(Part1::isPossible)
             .map(row -> row.split(":")[0])
             .map(row -> row.split(" ")[1])
             .map(Integer::parseInt)
@@ -20,9 +26,8 @@ public class CubeConudrum extends Solution<Integer> {
     private static boolean isPossible(final String line) {
         final int headerIndex = line.indexOf(":");
         final String row = line.substring(headerIndex + 1).trim();
-        System.out.println(row);
+
         final String[] sets = Arrays.stream(row.split("; "))
-//            .peek(System.out::println)
             .toArray(String[]::new);
 
         for (var set : sets) {

@@ -1,25 +1,17 @@
-package org.nf.aoc.solution.year2023;
+package org.nf.aoc.solution.year2023.day1;
 
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
 
+import org.nf.aoc.meta.SolutionDescription;
 import org.nf.aoc.solution.Solution;
-import org.nf.aoc.util.FileUtils;
 
-public class Trebuchet extends Solution<Integer> {
-
-    public static void main(String[] args) {
-        final List<String> list = FileUtils.readFile("/input/day1.txt");
-        var name = "41vhnrz44";
-//        var name = "fourhzgxqtxggfpprrmtfqsdhc2fdxnjdgx64oneight";
-
-        var trebuchet = new Trebuchet();
-
-        final int solve = trebuchet.solve(list.stream());
-//        var solve = solve2(name);
-        System.out.println(solve);
-    }
+@SolutionDescription(year = 2023, day = 1, part = 2,
+    description = "--- Day 1: Trebuchet?! ---",
+    link = "https://adventofcode.com/2023/day/1",
+    tags = { "#string_manipulation" }
+)
+public class Trebuchet implements Solution<Integer> {
 
     private final Map<String, String> digitMap = Map.of(
         "one", "o1e",
@@ -33,8 +25,8 @@ public class Trebuchet extends Solution<Integer> {
         "nine", "n9e"
     );
 
-    public Integer solve(Stream<String> inputStream) {
-        return inputStream
+    public Integer solve(Stream<String> input) {
+        return input
             .map(this::replaceWrittenDigits)
             .map(this::getAllDigits)
             .filter(s -> !s.isEmpty())
